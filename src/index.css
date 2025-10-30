@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Define theme colors for both light and dark mode */
+:root {
+  --scrollbar-thumb-color: #14b8a6;
+  /* Teal for light mode */
+  --scrollbar-thumb-hover-color: #0d9488;
+  /* Darker Teal */
+}
+
+.dark {
+  --scrollbar-thumb-color: #5eead4;
+  /* Lighter Teal for dark mode */
+  --scrollbar-thumb-hover-color: #2dd4bf;
+  /* Brighter Teal */
+}
+
+/* --- Main Page Scrollbar --- */
+/* By adding 'html', we ensure this style only applies to the main page scrollbar */
+
+/* For WebKit browsers like Chrome, Safari, Edge */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  /* Adds a small invisible border */
+  background-clip: content-box;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+/* For Firefox */
+@supports (scrollbar-color: auto) {
+  html {
+    scrollbar-color: var(--scrollbar-thumb-color) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+
+/* --- Animation Styles --- */
+
+/* Initial hidden state for sections */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;
+  /* Performance improvement */
+}
+
+/* Final visible state */
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* (Optional) Staggered animation for direct children of a visible section */
+.fade-in-section.is-visible>* {
+  transition-delay: 200ms;
+}
