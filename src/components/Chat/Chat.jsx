@@ -59,7 +59,7 @@ const Chat = () => {
         // 2. Function to setup and start SignalR
         const setupSignalR = () => {
             connection = new HubConnectionBuilder()
-                .withUrl("http://localhost:5198/chatHub")
+                .withUrl("https://ems-v0zd.onrender.com/chatHub")
                 .withAutomaticReconnect()
                 .build();
 
@@ -96,10 +96,10 @@ const Chat = () => {
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (newMessage.trim() === '') return;
-        
+
         const originalMessage = newMessage;
         setNewMessage('');
-        
+
         try {
             // The SignalR broadcast will handle the UI update for everyone, including the sender
             await apiPostChatMessage({ message: originalMessage });
@@ -108,7 +108,7 @@ const Chat = () => {
             setNewMessage(originalMessage); // Restore message on failure
         }
     };
-    
+
     const renderMessages = () => {
         let lastDate = null;
         return messages.map((msg) => {
@@ -142,7 +142,7 @@ const Chat = () => {
             </div>
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border mt-6 flex-1 flex flex-col overflow-hidden fade-in-section">
                 <div className="p-4 flex-1 overflow-y-auto">
-                    {loading ? <LoadingSpinner message="Connecting to chat..."/> : (
+                    {loading ? <LoadingSpinner message="Connecting to chat..." /> : (
                         messages.length > 0 ? renderMessages() : (
                             <EmptyState
                                 icon={MessageSquare}

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { showToast } from './utils/uiHelpers';
 
 const apiClient = axios.create({
-    baseURL: 'http://localhost:5198/api', // Your .NET server URL
+    baseURL: 'https://ems-v0zd.onrender.com/api', // ✅ Render backend URL
     headers: {
         'Content-Type': 'application/json',
     }
